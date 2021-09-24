@@ -6,6 +6,22 @@
   <router-view />
 </template>
 
+<script lang="ts">
+import { defineComponent, onMounted } from 'vue'
+
+import { checkHealth } from '@/apis/health'
+
+export default defineComponent({
+  name: 'App',
+  setup() {
+    const init = async () => {
+      checkHealth()
+    }
+    onMounted(init)
+  },
+})
+</script>
+
 <style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
