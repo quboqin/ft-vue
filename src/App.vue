@@ -9,13 +9,31 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 
+import { userAuthProvide, UserInfo, Profile, Item } from '@/store/user'
 import { checkHealth } from '@/apis/health'
+import { Greeter } from 'quboqin-lib/lib'
 
 export default defineComponent({
   name: 'App',
   setup() {
+    const profile = new Profile()
+    profile.phone = '+13233013227'
+    profile.firstName = 'Qubo'
+    profile.lastName = 'Qin'
+
+    const userInfo: UserInfo = {
+      profile: profile,
+      cart: {
+        totalPrice: 0.0,
+        items: [] as Item[],
+      },
+    }
+
+    userAuthProvide(userInfo)
+
     const init = async () => {
       checkHealth()
+      console.log(Greeter(`Qubo`))
     }
     onMounted(init)
   },
