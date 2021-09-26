@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "boilerplate-verify"
+  ],
+  "parentResource": "foodtruck4d6aa6e5",
+  "functionName": "foodtruck4d6aa6e5VerifyAuthChallengeResponse",
+  "resourceName": "foodtruck4d6aa6e5VerifyAuthChallengeResponse",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/Users/qinqubo/.nvm/versions/node/v16.7.0/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/triggers/VerifyAuthChallengeResponse",
+  "triggerTemplate": "VerifyAuthChallengeResponse.json.ejs",
+  "triggerEventPath": "VerifyAuthChallengeResponse.event.json",
+  "roleName": "foodtruck4d6aa6e5VerifyAuthChallengeResponse",
+  "skipEdit": true,
+  "enableCors": false
+}
