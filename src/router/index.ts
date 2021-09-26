@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
+import { getUser } from '@/utils/aws-auth'
+
 import Home from '#/Home.vue'
 import Profile from '#/Profile.vue'
 import Sign from '#/Sign.vue'
@@ -80,6 +82,16 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+})
+
+router.beforeEach(async (to, from, next) => {
+  const user = await getUser()
+  if (!user && to.matched.some((record) => record.meta.requiresAuth)) {
+    return next({
+      name: 'Sign',
+    })
+  }
+  return next()
 })
 
 export default router

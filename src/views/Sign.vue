@@ -68,10 +68,14 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
 
 import Header from '@/components/HeaderWithBack.vue'
 
+import { createUser } from '@/apis/user'
 import { userAuthInject } from '@/store/user'
+import { signIn, sendCustomChallengeAnswer } from '@/utils/aws-auth'
+import { User } from 'quboqin-lib/lib/user'
 
 export default defineComponent({
   name: 'Sign',
@@ -79,7 +83,8 @@ export default defineComponent({
     Header,
   },
   setup() {
-    const { userInfo } = userAuthInject()
+    const router = useRouter()
+    const { userInfo, setCognitoUser, setUser } = userAuthInject()
 
     const maxCount = 120
 
@@ -96,6 +101,13 @@ export default defineComponent({
 
     async function onSignIn(): Promise<void> {
       try {
+        const cognitoUser = await signIn(
+          state.phone,
+          true,
+          state.firstName,
+          state.lastName,
+        )
+
         state.disabled = true
         const limitedInterval = setInterval(() => {
           state.count--
@@ -106,6 +118,7 @@ export default defineComponent({
           }
         }, 1000)
 
+        setCognitoUser(cognitoUser)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.log(error.message)
@@ -121,6 +134,36 @@ export default defineComponent({
     // }
 
     async function onSubmitOTP(): Promise<void> {
+      let cognitoUser = userInfo.cognitoUser
+      if (cognitoUser) {
+        try {
+          await sendCustomChallengeAnswer(cognitoUser, state.code)
+
+          const user = new User()
+          user.phone = state.phone ? state.phone : ''
+          user.firstName = state.firstName ? state.firstName : ''
+          user.lastName = state.lastName ? state.lastName : ''
+          await createUser(user)
+
+          setUser(user)
+          router.push({
+            path: '/profile',
+          })
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+          if (error.code === 'UserLambdaValidationException') {
+            cognitoUser = await signIn(
+              cognitoUser.getUsername(),
+              true,
+              state.firstName,
+              state.lastName,
+            )
+            if (cognitoUser) {
+              setCognitoUser(cognitoUser)
+            }
+          }
+        }
+      }
       console.log(`onSubmit`)
     }
 

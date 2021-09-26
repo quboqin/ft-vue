@@ -1,5 +1,7 @@
 import { provide, inject, reactive } from 'vue'
 
+import { CognitoUser } from 'amazon-cognito-identity-js'
+
 import { User } from 'quboqin-lib/lib/user'
 import { Item } from 'quboqin-lib/lib/item'
 
@@ -7,6 +9,7 @@ export type Profile = User
 
 export interface UserInfo {
   profile?: Profile
+  cognitoUser?: CognitoUser
   cart?: {
     items?: Item[]
     totalPrice: number
@@ -20,6 +23,7 @@ export interface UserInfo {
 type UserInfoContext = {
   userInfo: UserInfo
   setUser: (newProfile?: Profile) => void
+  setCognitoUser: (cognitoUser?: CognitoUser) => void
   addItem: (newItem: Item) => void
   removeItem: (index: number) => void
 }
@@ -45,6 +49,9 @@ export const userAuthProvide: (newUserInfo: UserInfo) => void = (
     Object.assign(userInfo.profile, newProfile)
   }
 
+  const setCognitoUser = (cognitoUser: CognitoUser) =>
+    (userInfo.cognitoUser = cognitoUser)
+
   const addItem = (newItem: Item) => {
     userInfo.cart?.items?.push(newItem)
     updateTotalPrice()
@@ -58,6 +65,7 @@ export const userAuthProvide: (newUserInfo: UserInfo) => void = (
   provide(UserAuthSymbol, {
     userInfo,
     setUser,
+    setCognitoUser,
     addItem,
     removeItem,
   })

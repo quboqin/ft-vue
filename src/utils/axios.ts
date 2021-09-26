@@ -1,6 +1,39 @@
 import axios from 'axios'
 
+import { getCurrentSession, getUser } from '@/utils/aws-auth'
+
 axios.defaults.baseURL = 'https://localhost:3000/api/v1'
+
+axios.interceptors.request.use(
+  async (config) => {
+    const session = await getCurrentSession()
+    if (session) {
+      config.headers.Authorization = `Bearer ${session
+        .getIdToken()
+        .getJwtToken()}`
+      const user = await getUser()
+      config.headers.userId = user.username
+    }
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  },
+)
+
+axios.interceptors.response.use(
+  (response) => {
+    if (response.status === 200 || response.status === 204) {
+      return Promise.resolve(response)
+    } else {
+      return Promise.reject(response)
+    }
+  },
+  (error) => {
+    if (error.status === 401) console.log('login failed')
+    return Promise.reject(error)
+  },
+)
 
 function get<T, U>(path: string, params: T): Promise<U> {
   return new Promise((resolve, reject) => {
