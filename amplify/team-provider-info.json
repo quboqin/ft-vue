@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-foodtruck-dev-221054-authRole",
+      "UnauthRoleArn": "arn:aws:iam::403593870368:role/amplify-foodtruck-dev-221054-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::403593870368:role/amplify-foodtruck-dev-221054-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-foodtruck-dev-221054-deployment",
+      "UnauthRoleName": "amplify-foodtruck-dev-221054-unauthRole",
+      "StackName": "amplify-foodtruck-dev-221054",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:403593870368:stack/amplify-foodtruck-dev-221054/95bff200-1ed3-11ec-87d9-06d5b63015d5",
+      "AmplifyAppId": "d2shkapc1gfwxz"
+    },
+    "categories": {
+      "function": {
+        "foodtruck2826b8ad2826b8adCreateAuthChallenge": {
+          "deploymentBucketName": "amplify-foodtruck-dev-221054-deployment",
+          "s3Key": "amplify-builds/foodtruck2826b8ad2826b8adCreateAuthChallenge-664e6c6c5a7045385669-build.zip"
+        },
+        "foodtruck2826b8ad2826b8adDefineAuthChallenge": {
+          "deploymentBucketName": "amplify-foodtruck-dev-221054-deployment",
+          "s3Key": "amplify-builds/foodtruck2826b8ad2826b8adDefineAuthChallenge-5377743238676b6f6f4f-build.zip"
+        },
+        "foodtruck2826b8ad2826b8adPreSignup": {
+          "deploymentBucketName": "amplify-foodtruck-dev-221054-deployment",
+          "s3Key": "amplify-builds/foodtruck2826b8ad2826b8adPreSignup-43366951455030626362-build.zip"
+        },
+        "foodtruck2826b8ad2826b8adVerifyAuthChallengeResponse": {
+          "deploymentBucketName": "amplify-foodtruck-dev-221054-deployment",
+          "s3Key": "amplify-builds/foodtruck2826b8ad2826b8adVerifyAuthChallengeResponse-6f7a356b7662454d5656-build.zip"
+        }
+      },
+      "auth": {
+        "foodtruck2826b8ad2826b8ad": {}
+      }
+    }
+  }
+}

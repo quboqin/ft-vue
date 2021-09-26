@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "foodtruck2826b8ad2826b8ad",
+  "functionName": "foodtruck2826b8ad2826b8adPreSignup",
+  "resourceName": "foodtruck2826b8ad2826b8adPreSignup",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/Users/qinqubo/.nvm/versions/node/v14.17.6/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/triggers/PreSignup",
+  "triggerTemplate": "PreSignup.json.ejs",
+  "triggerEventPath": "PreSignup.event.json",
+  "roleName": "foodtruck2826b8ad2826b8adPreSignup",
+  "skipEdit": true,
+  "enableCors": false
+}

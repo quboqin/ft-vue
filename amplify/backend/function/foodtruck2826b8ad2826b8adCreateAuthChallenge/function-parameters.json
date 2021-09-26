@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "boilerplate-create-challenge"
+  ],
+  "parentResource": "foodtruck2826b8ad2826b8ad",
+  "functionName": "foodtruck2826b8ad2826b8adCreateAuthChallenge",
+  "resourceName": "foodtruck2826b8ad2826b8adCreateAuthChallenge",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/Users/qinqubo/.nvm/versions/node/v14.17.6/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/triggers/CreateAuthChallenge",
+  "triggerTemplate": "CreateAuthChallenge.json.ejs",
+  "triggerEventPath": "CreateAuthChallenge.event.json",
+  "roleName": "foodtruck2826b8ad2826b8adCreateAuthChallenge",
+  "skipEdit": true,
+  "enableCors": false
+}
