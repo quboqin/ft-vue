@@ -1,25 +1,84 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+
+import Home from '#/Home.vue'
+import Profile from '#/Profile.vue'
+import Sign from '#/Sign.vue'
+import OrderList from '#/OrderList.vue'
+import Cart from '#/Cart.vue'
+import Checkout from '#/Checkout.vue'
+import AddressList from '#/AddressList.vue'
+import AddressDetail from '#/AddressDetail.vue'
+import CreditCardList from '#/CreditCardList.vue'
+import CreditCardDetail from '#/CreditCardDetail.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    redirect: '/home',
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home,
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/sign',
+    name: 'Sign',
+    component: Sign,
+  },
+  {
+    path: '/order-list',
+    name: 'OrderList',
+    component: OrderList,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/address-list',
+    name: 'AddressList',
+    component: AddressList,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/address-detail',
+    name: 'AddressDetail',
+    component: AddressDetail,
+    props: true,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/credit-card-list',
+    name: 'CreditCardList',
+    component: CreditCardList,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/credit-card-detail',
+    name: 'CreditCardDetail',
+    component: CreditCardDetail,
+    meta: { requiresAuth: true },
   },
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes,
 })
 

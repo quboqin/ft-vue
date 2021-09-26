@@ -1,23 +1,19 @@
 import { provide, inject, reactive } from 'vue'
 
-export class Profile {
-  firstName?: string
-  lastName?: string
-  phone?: string
-}
+import { User } from 'quboqin-lib/lib/user'
+import { Item } from 'quboqin-lib/lib/item'
 
-export class Item {
-  name?: string
-  desc?: string
-  price?: number
-  amount?: number
-}
+export type Profile = User
 
 export interface UserInfo {
   profile?: Profile
   cart?: {
     items?: Item[]
     totalPrice: number
+    tax?: number
+    tips?: number
+    deliverFee?: number
+    deliverDate?: string
   }
 }
 

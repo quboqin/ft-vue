@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:3000/api/v1'
+axios.defaults.baseURL = 'https://localhost:3000/api/v1'
 
 function get<T, U>(path: string, params: T): Promise<U> {
   return new Promise((resolve, reject) => {
@@ -79,8 +79,8 @@ export function request<T, U>(
 export function result<T, U>(
   method: string,
   path: string,
-  params?: T,
-  mockData?: U,
+  params?: T | undefined,
+  mockData?: U | undefined,
 ): Promise<U | void> {
   return new Promise((resolve) => {
     if (mockData) return resolve(mockData)

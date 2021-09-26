@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "category": "水果",
+    "name": "Burge",
+    "desc": "burge with tomatoes and lettuce",
+    "imgUrl": "https://cdn.jsdelivr.net/gh/quboqin/images@main/blogs/pictures/burge.jpeg",
+    "price": 3.14,
+    "discount": 0.1512
+  },
+  {
+    "id": 2,
+    "category": "蔬菜",
+    "name": "Pizza",
+    "desc": "pizza with berries",
+    "imgUrl": "https://cdn.jsdelivr.net/gh/quboqin/images@main/blogs/pictures/pizza.jpeg",
+    "price": 6.88,
+    "discount": 0.21
+  },
+  {
+    "id": 3,
+    "category": "肉类",
+    "name": "Salad",
+    "desc": "bowl of vegetable salads",
+    "imgUrl": "https://cdn.jsdelivr.net/gh/quboqin/images@main/blogs/pictures/salads.jpeg",
+    "price": 4.99,
+    "discount": 0.15
+  },
+  {
+    "id": 4,
+    "category": "面食点心",
+    "name": "Burge",
+    "desc": "burge with tomatoes and lettuce",
+    "imgUrl": "https://cdn.jsdelivr.net/gh/quboqin/images@main/blogs/pictures/burge.jpeg",
+    "price": 3.14,
+    "discount": 0.2
+  },
+  {
+    "id": 5,
+    "category": "方便面",
+    "name": "Pizza",
+    "desc": "pizza with berries",
+    "imgUrl": "https://cdn.jsdelivr.net/gh/quboqin/images@main/blogs/pictures/pizza.jpeg",
+    "price": 6.88,
+    "discount": 0.3
+  },
+  {
+    "id": 6,
+    "category": "水果",
+    "name": "Salad",
+    "desc": "bowl of vegetable salads",
+    "imgUrl": "https://cdn.jsdelivr.net/gh/quboqin/images@main/blogs/pictures/salads.jpeg",
+    "price": 4.99,
+    "discount": 0.2
+  }
+]
