@@ -118,6 +118,7 @@ import { useRouter } from 'vue-router'
 import Header from '@/components/Header.vue'
 import TabBar from '@/components/Tabbar.vue'
 
+import { signOut } from '@/utils/aws-auth'
 import { userAuthInject } from '@/store/user'
 import { User } from 'quboqin-lib/lib/user'
 import { getUserByPhone } from '@/apis/user'
@@ -155,6 +156,7 @@ export default defineComponent({
     }
 
     async function onLogout() {
+      await signOut()
       setUser(new User())
       router.push({
         path: '/',
