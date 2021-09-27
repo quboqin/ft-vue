@@ -2,7 +2,14 @@ import axios from 'axios'
 
 import { getCurrentSession, getUser } from '@/utils/aws-auth'
 
-axios.defaults.baseURL = 'https://localhost:3000/api/v1'
+const port = process.env.VUE_APP_PORT
+const url = process.env.VUE_APP_BASE_URL
+axios.defaults.baseURL = port ? `${url}:${process.env.VUE_APP_PORT}` : `${url}`
+axios.defaults.timeout = process.env.VUE_APP_TIMEOUT
+  ? +process.env.VUE_APP_TIMEOUT
+  : 5000
+axios.defaults.headers.post['Content-Type'] =
+  'application/x-www-form-urlencoded;charset=UTF-8'
 
 axios.interceptors.request.use(
   async (config) => {
