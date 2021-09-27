@@ -1,0 +1,41 @@
+name: Deploy Static Website to Staging
+
+on:
+  push:
+    branches: [oracle-staging]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: oracle-staging
+      - name: install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.16.1'
+      - name: install npm dependencies
+        run: npm install
+      - name: build task
+        run: npm run build:staging
+      - name: copy file via scp
+        uses: appleboy/scp-action@master
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USERNAME: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+          KEY: ${{ secrets.DEPLOY_KEY }}
+        with:
+          source: 'dist/'
+          target: ${{ secrets.DEPLOY_ORACLE }}/staging
+          strip_components: 1
+      - name: executing remote command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          USERNAME: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+          KEY: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            systemctl restart nginx
