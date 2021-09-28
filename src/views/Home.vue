@@ -1,7 +1,7 @@
 <template>
   <Header>
     <template #left>
-      <p class="mdi mdi-view-grid-outline"></p>
+      <p class="mdi mdi-tanker-truck"></p>
     </template>
 
     <template #default>
