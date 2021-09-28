@@ -12,7 +12,7 @@
     "aws-amplify-vue": "^2.1.5",
     "axios": "^0.21.4",
     "core-js": "^3.6.5",
-    "quboqin-lib": "^1.1.0",
+    "quboqin-lib": "^1.2.0",
     "vant": "^3.2.3",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
