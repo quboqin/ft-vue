@@ -21,13 +21,7 @@ export default defineComponent({
     profile.firstName = 'Qubo'
     profile.lastName = 'Qin'
 
-    const port = process.env.VUE_APP_PORT
-    const url = process.env.VUE_APP_BASE_URL
-    const socketUrl = port
-      ? `${url}:${process.env.VUE_APP_PORT}`
-      : process.env.VUE_APP_BASE_URL
-
-    const socket = io(`${socketUrl}`)
+    const socket = io(`https://localhost:3000`)
 
     socket.on('connect', () => {
       console.log(`connect with ${socket.id}`)
