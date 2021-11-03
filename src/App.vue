@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts">
+import { io } from 'socket.io-client'
+
 import { defineComponent, onMounted } from 'vue'
 
 import { userAuthProvide, UserInfo } from '@/store/user'
@@ -19,12 +21,25 @@ export default defineComponent({
     profile.firstName = 'Qubo'
     profile.lastName = 'Qin'
 
+    const port = process.env.VUE_APP_PORT
+    const url = process.env.VUE_APP_BASE_URL
+    const socketUrl = port
+      ? `${url}:${process.env.VUE_APP_PORT}`
+      : process.env.VUE_APP_BASE_URL
+
+    const socket = io(`${socketUrl}`)
+
+    socket.on('connect', () => {
+      console.log(`connect with ${socket.id}`)
+    })
+
     const userInfo: UserInfo = {
       profile: profile,
       cart: {
         totalPrice: 0.0,
         items: [] as Item[],
       },
+      socket: socket,
     }
 
     userAuthProvide(userInfo)

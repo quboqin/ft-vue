@@ -4,7 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --mode ${NODE_ENV}",
+    "build:production": "vue-cli-service build --mode production",
+    "build:mytest": "vue-cli-service build --mode mytest",
+    "build:staging": "vue-cli-service build --mode staging",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -13,6 +18,7 @@
     "axios": "^0.21.4",
     "core-js": "^3.6.5",
     "quboqin-lib": "^1.2.0",
+    "socket.io-client": "^4.3.2",
     "vant": "^3.2.3",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"

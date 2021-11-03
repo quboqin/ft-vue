@@ -1,7 +1,7 @@
 <template>
   <Header>
     <template #left>
-      <p class="mdi mdi-tanker-truck"></p>
+      <p class="mdi mdi-tanker-truck" @click="onSend"></p>
     </template>
 
     <template #default>
@@ -79,6 +79,14 @@ export default defineComponent({
       router.push('cart')
     }
 
+    function onSend() {
+      userInfo.socket?.emit('sendPrivateMsg', {
+        message: 'hello',
+        user: userInfo.profile?.phone,
+      })
+      console.log(`onSend`)
+    }
+
     function goodsMatchingCategory(category: string) {
       if (category === Category.ALL) {
         if (state.searchQuery === '') {
@@ -132,6 +140,7 @@ export default defineComponent({
       onCart,
       addCart,
       goodsMatchingCategory,
+      onSend,
     }
   },
 })

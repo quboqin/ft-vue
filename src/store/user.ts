@@ -1,3 +1,4 @@
+import { Socket } from 'socket.io-client'
 import { provide, inject, reactive } from 'vue'
 
 import { CognitoUser } from 'amazon-cognito-identity-js'
@@ -18,6 +19,7 @@ export interface UserInfo {
     deliverFee?: number
     deliverDate?: string
   }
+  socket?: Socket
 }
 
 type UserInfoContext = {
@@ -26,6 +28,7 @@ type UserInfoContext = {
   setCognitoUser: (cognitoUser?: CognitoUser) => void
   addItem: (newItem: Item) => void
   removeItem: (index: number) => void
+  setSocket: (socket: Socket) => void
 }
 
 const UserAuthSymbol = Symbol()
@@ -62,12 +65,17 @@ export const userAuthProvide: (newUserInfo: UserInfo) => void = (
     updateTotalPrice()
   }
 
+  const setSocket = (socket: Socket) => {
+    Object.assign(userInfo.socket, socket)
+  }
+
   provide(UserAuthSymbol, {
     userInfo,
     setUser,
     setCognitoUser,
     addItem,
     removeItem,
+    setSocket,
   })
 }
 
