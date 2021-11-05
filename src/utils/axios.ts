@@ -1,10 +1,9 @@
 import axios from 'axios'
 
 import { getCurrentSession, getUser } from '@/utils/aws-auth'
+import url from '@/utils/url'
 
-const port = process.env.VUE_APP_PORT
-const url = process.env.VUE_APP_BASE_URL
-axios.defaults.baseURL = port ? `${url}:${process.env.VUE_APP_PORT}` : `${url}`
+axios.defaults.baseURL = url
 axios.defaults.timeout = process.env.VUE_APP_TIMEOUT
   ? +process.env.VUE_APP_TIMEOUT
   : 5000

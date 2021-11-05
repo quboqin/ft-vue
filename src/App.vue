@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { io } from 'socket.io-client'
+import { urlWithoutPath } from '@/utils/url'
 
 import { defineComponent, onMounted } from 'vue'
 
@@ -21,7 +22,7 @@ export default defineComponent({
     profile.firstName = 'Qubo'
     profile.lastName = 'Qin'
 
-    const socket = io(`https://localhost:3000`)
+    const socket = io(`${urlWithoutPath}`)
 
     socket.on('connect', () => {
       console.log(`connect with ${socket.id}`)
